@@ -255,8 +255,17 @@ function loop(timestamp) {
 }
 
 // ── Input ─────────────────────────────────────────────────────
-document.addEventListener('keydown', e => { keys[e.code] = true; });
-document.addEventListener('keyup',   e => { keys[e.code] = false; });
+// FIX: Prevent Space and arrow keys from triggering browser scroll/reload
+const GAME_KEYS = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
+
+document.addEventListener('keydown', e => {
+  if (GAME_KEYS.has(e.code)) e.preventDefault();
+  keys[e.code] = true;
+});
+document.addEventListener('keyup', e => {
+  if (GAME_KEYS.has(e.code)) e.preventDefault();
+  keys[e.code] = false;
+});
 
 // ── UI Buttons ────────────────────────────────────────────────
 document.getElementById('startBtn').addEventListener('click', () => {
