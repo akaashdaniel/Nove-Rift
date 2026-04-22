@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOVA RIFT — Space Shooter</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="gameContainer">
+  <canvas id="gameCanvas" width="600" height="800"></canvas>
+
+  <div id="ui">
+
+    <!-- ── HUD ─────────────────────────────────────────────── -->
+    <div id="hud">
+      <div class="hud-block">
+        <span class="hud-label">Score</span>
+        <span class="hud-value" id="scoreDisplay">0</span>
+      </div>
+      <div class="hud-block" style="align-items:center">
+        <span class="hud-label" style="text-align:center">Wave</span>
+        <span class="hud-value" id="waveDisplay">1</span>
+      </div>
+      <div class="hud-block" style="align-items:flex-end">
+        <span class="hud-label">Best</span>
+        <span class="hud-value gold" id="hiScoreDisplay">0</span>
+      </div>
+    </div>
+
+    <!-- ── Health Bar ────────────────────────────────────── -->
+    <div id="healthBar">
+      <div class="health-label">HULL INTEGRITY</div>
+      <div class="health-track">
+        <div id="healthFill"></div>
+      </div>
+    </div>
+
+    <!-- ── Wave Flash ────────────────────────────────────── -->
+    <div id="waveIndicator"></div>
+
+    <!-- ── Start Screen ──────────────────────────────────── -->
+    <div class="screen" id="startScreen">
+      <div class="game-subtitle">— INTERSTELLAR COMBAT —</div>
+      <div class="game-title">NOVA<br>RIFT</div>
+      <div class="title-tagline">SURVIVE THE VOID</div>
+      <div class="divider"></div>
+      <button class="btn-start" id="startBtn">LAUNCH MISSION</button>
+      <div class="instructions">
+        <span>WASD / ARROW KEYS</span> — Move &nbsp;|&nbsp; <span>SPACE</span> — Fire<br>
+        Destroy enemies for points. Avoid asteroids.<br>
+        Survive as long as you can.
+      </div>
+    </div>
+
+    <!-- ── Game Over Screen ───────────────────────────────── -->
+    <div class="screen hidden" id="gameOverScreen">
+      <div class="go-title">GAME OVER</div>
+      <div class="go-sub">SHIP DESTROYED</div>
+      <div class="go-stats">
+        <div class="go-stat">
+          <div class="go-stat-label">Final Score</div>
+          <div class="go-stat-value" id="finalScore">0</div>
+        </div>
+        <div class="go-stat">
+          <div class="go-stat-label">Best Score</div>
+          <div class="go-stat-value gold" id="finalHiScore">0</div>
+        </div>
+      </div>
+      <div class="new-record" id="newRecordBadge">★ NEW RECORD ★</div>
+      <button class="btn-restart" id="restartBtn">RETRY MISSION</button>
+    </div>
+
+  </div><!-- /ui -->
+</div><!-- /gameContainer -->
+
+<!-- ES Modules: game.js imports all other modules -->
+<script type="module" src="js/game.js"></script>
+
+</body>
+</html>

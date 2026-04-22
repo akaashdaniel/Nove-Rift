@@ -1,0 +1,369 @@
+/* ═══════════════════════════════════════════════════════════════
+   NOVA RIFT — Space Shooter | Stylesheet
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+}
+
+/* ── Game Container ─────────────────────────────────────────── */
+#gameContainer {
+  position: relative;
+  width: 600px;
+  height: 800px;
+}
+
+canvas {
+  display: block;
+  border: 1px solid rgba(0, 255, 200, 0.15);
+  box-shadow:
+    0 0 60px rgba(0, 200, 255, 0.12),
+    0 0 120px rgba(100, 0, 255, 0.08),
+    inset 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+#ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ── HUD ────────────────────────────────────────────────────── */
+#hud {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.hud-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(0, 255, 200, 0.5);
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hud-value {
+  font-size: 26px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #00ffc8;
+  text-shadow: 0 0 20px rgba(0, 255, 200, 0.8);
+  line-height: 1;
+}
+
+.hud-value.gold {
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+/* ── Health Bar ─────────────────────────────────────────────── */
+#healthBar {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  pointer-events: none;
+}
+
+.health-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(255, 100, 100, 0.6);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 5px;
+}
+
+.health-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 100, 100, 0.2);
+}
+
+#healthFill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #ff2244, #ff6644);
+  border-radius: 3px;
+  transition: width 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 50, 50, 0.6);
+}
+
+/* ── Screens Overlay ────────────────────────────────────────── */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  transition: opacity 0.4s ease;
+}
+
+.screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Start Screen ───────────────────────────────────────────── */
+#startScreen {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 20, 0.95) 0%,
+    rgba(5, 0, 40, 0.92) 50%,
+    rgba(0, 0, 20, 0.95) 100%
+  );
+}
+
+.game-subtitle {
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: rgba(0, 200, 255, 0.6);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.game-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1;
+  text-align: center;
+  background: linear-gradient(135deg, #00ffc8 0%, #00aaff 50%, #aa44ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(0, 200, 255, 0.5));
+  margin-bottom: 8px;
+}
+
+.title-tagline {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: rgba(180, 180, 220, 0.5);
+  font-family: 'Rajdhani', sans-serif;
+  margin-bottom: 50px;
+}
+
+.divider {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 200, 0.4), transparent);
+  margin: 30px 0;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn-start {
+  position: relative;
+  padding: 16px 50px;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 200, 0.5);
+  color: #00ffc8;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-start::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 255, 200, 0);
+  transition: background 0.3s ease;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-start:hover::before {
+  background: rgba(0, 255, 200, 0.12);
+}
+
+.btn-start:hover {
+  border-color: #00ffc8;
+  box-shadow: 0 0 30px rgba(0, 255, 200, 0.3), inset 0 0 20px rgba(0, 255, 200, 0.05);
+  letter-spacing: 7px;
+}
+
+.btn-start:active {
+  transform: scale(0.97);
+}
+
+/* ── Instructions ───────────────────────────────────────────── */
+.instructions {
+  margin-top: 40px;
+  text-align: center;
+  color: rgba(180, 180, 220, 0.4);
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 1px;
+}
+
+.instructions span {
+  color: rgba(0, 200, 255, 0.6);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+}
+
+/* ── Game Over Screen ───────────────────────────────────────── */
+#gameOverScreen {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 0, 0, 0.96) 0%,
+    rgba(40, 0, 20, 0.94) 50%,
+    rgba(20, 0, 0, 0.96) 100%
+  );
+}
+
+.go-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 52px;
+  color: #ff2244;
+  filter: drop-shadow(0 0 30px rgba(255, 30, 60, 0.6));
+  margin-bottom: 6px;
+  letter-spacing: 4px;
+}
+
+.go-sub {
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: rgba(255, 100, 100, 0.4);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 40px;
+}
+
+.go-stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.go-stat {
+  text-align: center;
+}
+
+.go-stat-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(200, 200, 255, 0.4);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.go-stat-value {
+  font-size: 32px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #fff;
+}
+
+.go-stat-value.gold {
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.new-record {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #ffd700;
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 20px;
+  animation: pulse 1s infinite;
+  display: none;
+}
+
+.new-record.show {
+  display: block;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.btn-restart {
+  padding: 14px 44px;
+  background: transparent;
+  border: 1px solid rgba(255, 50, 80, 0.5);
+  color: #ff4466;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-restart:hover {
+  border-color: #ff4466;
+  box-shadow: 0 0 30px rgba(255, 50, 80, 0.3);
+  letter-spacing: 7px;
+}
+
+.btn-restart:active {
+  transform: scale(0.97);
+}
+
+/* ── Wave Indicator ─────────────────────────────────────────── */
+#waveIndicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(0, 255, 200, 0.9);
+  text-shadow: 0 0 30px rgba(0, 255, 200, 0.8);
+  letter-spacing: 8px;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#waveIndicator.show {
+  opacity: 1;
+}
