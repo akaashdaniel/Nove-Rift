@@ -1,12 +1,8 @@
-// ═══════════════════════════════════════════════════════════════
-//  NOVA RIFT — effects.js
-//  Particle explosions and floating score popups
-// ═══════════════════════════════════════════════════════════════
 
 export const particles    = [];
 export const scorePopups  = [];
 
-// ── Explosions ────────────────────────────────────────────────
+// ── Explosions 
 export function spawnExplosion(x, y, color, count = 18) {
   // Debris particles
   for (let i = 0; i < count; i++) {
@@ -64,7 +60,7 @@ export function drawParticles(ctx) {
   });
 }
 
-// ── Score Popups ──────────────────────────────────────────────
+// ── Score Popups 
 export function spawnScorePopup(x, y, value) {
   scorePopups.push({ x, y, value, life: 1, vy: -1.2 });
 }
@@ -91,7 +87,7 @@ export function drawScorePopups(ctx) {
   });
 }
 
-// ── Reset ─────────────────────────────────────────────────────
+// ── Reset 
 export function resetEffects() {
   particles.length   = 0;
   scorePopups.length = 0;
