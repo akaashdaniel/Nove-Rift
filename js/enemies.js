@@ -1,12 +1,7 @@
-// ═══════════════════════════════════════════════════════════════
-//  NOVA RIFT — enemies.js
-//  Enemy squares and asteroid obstacles
-// ═══════════════════════════════════════════════════════════════
-
 export const enemies   = [];
 export const asteroids = [];
 
-// ── Enemy ─────────────────────────────────────────────────────
+// ── Enemy 
 export function spawnEnemy(W, baseSpeed) {
   const size = 22 + Math.random() * 16;
   enemies.push({
@@ -58,7 +53,7 @@ export function drawEnemies(ctx) {
   });
 }
 
-// ── Asteroid ──────────────────────────────────────────────────
+// ── Asteroid
 function generateShape(sides, size) {
   const pts = [];
   for (let i = 0; i < sides; i++) {
@@ -111,7 +106,7 @@ export function drawAsteroids(ctx) {
   });
 }
 
-// ── Reset ─────────────────────────────────────────────────────
+// ── Reset 
 export function resetEnemies() {
   enemies.length   = 0;
   asteroids.length = 0;
