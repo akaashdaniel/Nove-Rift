@@ -1,7 +1,3 @@
-// ═══════════════════════════════════════════════════════════════
-//  NOVA RIFT — game.js
-//  Core game loop, state management, collision detection, HUD
-// ═══════════════════════════════════════════════════════════════
 
 import { unlockAudio, playExplosion, playHit } from './audio.js';
 import { initStars, updateStars, drawStars, drawNebula } from './background.js';
@@ -24,12 +20,12 @@ import {
   resetEffects,
 } from './effects.js';
 
-// ── Canvas Setup ──────────────────────────────────────────────
+// ── Canvas Setup 
 const canvas = document.getElementById('gameCanvas');
 const ctx    = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 
-// ── DOM refs ──────────────────────────────────────────────────
+// ── DOM refs 
 const scoreEl       = document.getElementById('scoreDisplay');
 const hiScoreEl     = document.getElementById('hiScoreDisplay');
 const waveEl        = document.getElementById('waveDisplay');
@@ -42,7 +38,7 @@ const finalScoreEl   = document.getElementById('finalScore');
 const finalHiScoreEl = document.getElementById('finalHiScore');
 const newRecordBadge = document.getElementById('newRecordBadge');
 
-// ── Game State ────────────────────────────────────────────────
+// ── Game State 
 let gameState = 'start'; // 'start' | 'playing' | 'gameover'
 let score     = 0;
 let hiScore   = parseInt(localStorage.getItem('novarift_hi') || '0');
@@ -59,7 +55,7 @@ let asteroidSpawnRate  = 3.5;
 const keys = {};
 let lastTime = null;
 
-// ── HUD ───────────────────────────────────────────────────────
+// ── HUD 
 function updateHUD() {
   scoreEl.textContent   = score;
   hiScoreEl.textContent = hiScore;
@@ -73,14 +69,14 @@ function updateHUD() {
     `linear-gradient(90deg, rgb(${r},${g < 50 ? 10 : 50},20), rgb(${r},${Math.min(g, 200)},20))`;
 }
 
-// ── Wave Announce ─────────────────────────────────────────────
+// ── Wave Announce 
 function showWaveAnnounce(n) {
   waveIndicator.textContent = `WAVE ${n}`;
   waveIndicator.classList.add('show');
   waveShowTimer = 2;
 }
 
-// ── Reset ─────────────────────────────────────────────────────
+// ── Reset 
 function resetGame() {
   score = 0; wave = 1; waveTimer = 0;
   enemySpawnRate   = 1.8; enemyBaseSpeed  = 80;
@@ -93,7 +89,7 @@ function resetGame() {
   showWaveAnnounce(1);
 }
 
-// ── Collision Helpers ─────────────────────────────────────────
+// ── Collision Helpers 
 function circleRect(cx, cy, cr, rx, ry, rw, rh) {
   const dx = Math.abs(cx - rx), dy = Math.abs(cy - ry);
   if (dx > rw / 2 + cr || dy > rh / 2 + cr) return false;
@@ -105,7 +101,7 @@ function circleCircle(x1, y1, r1, x2, y2, r2) {
   return Math.hypot(x1 - x2, y1 - y2) < r1 + r2;
 }
 
-// ── Game Over ─────────────────────────────────────────────────
+// ── Game Over 
 function triggerGameOver() {
   gameState = 'gameover';
   spawnExplosion(player.x, player.y, '#00ccff', 40);
@@ -118,7 +114,7 @@ function triggerGameOver() {
   setTimeout(() => gameOverScreen.classList.remove('hidden'), 800);
 }
 
-// ── Update ────────────────────────────────────────────────────
+// ── Update 
 function update(dt) {
   if (gameState !== 'playing') return;
 
@@ -214,7 +210,7 @@ function update(dt) {
   updateHUD();
 }
 
-// ── Draw ──────────────────────────────────────────────────────
+// ── Draw 
 function draw() {
   ctx.fillStyle = '#02020e';
   ctx.fillRect(0, 0, W, H);
@@ -241,7 +237,7 @@ function draw() {
   ctx.restore();
 }
 
-// ── Main Loop ─────────────────────────────────────────────────
+// ── Main Loop 
 function loop(timestamp) {
   if (!lastTime) lastTime = timestamp;
   const dt = Math.min((timestamp - lastTime) / 1000, 0.05);
@@ -254,8 +250,7 @@ function loop(timestamp) {
   requestAnimationFrame(loop);
 }
 
-// ── Input ─────────────────────────────────────────────────────
-// FIX: Prevent Space and arrow keys from triggering browser scroll/reload
+// ── Input 
 const GAME_KEYS = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
 
 document.addEventListener('keydown', e => {
@@ -267,7 +262,7 @@ document.addEventListener('keyup', e => {
   keys[e.code] = false;
 });
 
-// ── UI Buttons ────────────────────────────────────────────────
+// ── UI Buttons 
 document.getElementById('startBtn').addEventListener('click', () => {
   unlockAudio();
   startScreen.classList.add('hidden');
@@ -281,7 +276,7 @@ document.getElementById('restartBtn').addEventListener('click', () => {
   gameState = 'playing';
 });
 
-// ── Bootstrap ─────────────────────────────────────────────────
+// ── Bootstrap 
 hiScoreEl.textContent = hiScore;
 initStars(W, H);
 requestAnimationFrame(loop);
