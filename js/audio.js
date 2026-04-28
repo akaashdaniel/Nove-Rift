@@ -1,7 +1,3 @@
-// ═══════════════════════════════════════════════════════════════
-//  NOVA RIFT — audio.js
-//  Web Audio API sound effects
-// ═══════════════════════════════════════════════════════════════
 
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
