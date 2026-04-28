@@ -1,7 +1,3 @@
-// ═══════════════════════════════════════════════════════════════
-//  NOVA RIFT — background.js
-//  Animated star field + nebula rendering
-// ═══════════════════════════════════════════════════════════════
 
 const STAR_LAYERS = [
   { count: 80,  speed: 0.3, size: 0.8, alpha: 0.3 },
