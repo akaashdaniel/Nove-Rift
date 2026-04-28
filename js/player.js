@@ -1,8 +1,3 @@
-// ═══════════════════════════════════════════════════════════════
-//  NOVA RIFT — player.js
-//  Player state, movement, rendering, and bullet management
-// ═══════════════════════════════════════════════════════════════
-
 import { playShoot } from './audio.js';
 
 export const player = {
@@ -18,7 +13,7 @@ export const player = {
 
 export const bullets = [];
 
-// ── Reset ─────────────────────────────────────────────────────
+// ── Reset 
 export function resetPlayer(W, H) {
   player.x = W / 2;
   player.y = H - 100;
@@ -29,7 +24,7 @@ export function resetPlayer(W, H) {
   bullets.length = 0;
 }
 
-// ── Shoot ─────────────────────────────────────────────────────
+// ── Shoot 
 export function spawnBullet() {
   bullets.push({
     x: player.x,
@@ -40,7 +35,7 @@ export function spawnBullet() {
   playShoot();
 }
 
-// ── Update ────────────────────────────────────────────────────
+// ── Update 
 export function updatePlayer(dt, keys, W, H) {
   const px_old = player.x;
 
@@ -72,7 +67,7 @@ export function updateBullets(dt, H) {
   }
 }
 
-// ── Draw ──────────────────────────────────────────────────────
+// ── Draw 
 export function drawPlayer(ctx) {
   if (player.invincible > 0 && Math.floor(player.invincible * 10) % 2 === 0) return;
 
